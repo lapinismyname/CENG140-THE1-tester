@@ -12,8 +12,17 @@ for i in range(len(inputs)):
 
     open('user_inp.txt', 'w').write(inputs[i])
     os.system("./the1_pyramid < user_inp.txt > user_outp.txt")
-
-    if open('user_outp.txt').read() in outputs[i]:
+    
+    test = open('user_outp.txt').read()
+    if test == outputs[i][:-3]:
         print(f"Case {i+1}: PASS")
     else:
-        print(f"Case {i+1}: FAILED")
+        print(f"\nCase {i+1}: FAILED")
+        test = test.splitlines()
+        compare = outputs[i][:-3]
+        for j in test:
+            if j + "\n" != compare[:len(j)+1]:
+                print("Expected: " + compare[:len(j)+1][:-1])
+                print("Your Result: " + j)
+            compare = compare[len(j)+1:]
+        print()

@@ -13,7 +13,7 @@ for i in range(len(inputs)):
     open('user_inp.txt', 'w').write(inputs[i])
     os.system("./the1_dhondt < user_inp.txt > user_outp.txt")
 
-    if open('user_outp.txt').read() in outputs[i]:
+    if open('user_outp.txt').read() == outputs[i][:-3]:
         print(f"Case {i+1}: PASS")
     else:
         print(f"Case {i+1}: FAILED")
