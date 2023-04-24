@@ -8,8 +8,6 @@ openOutp.close()
 openInp.close()
 
 for i in range(len(inputs)):
-    open('user_inp.txt', 'w').close()
-
     open('user_inp.txt', 'w').write(inputs[i])
     os.system("./the1_pyramid < user_inp.txt > user_outp.txt")
     
@@ -19,10 +17,10 @@ for i in range(len(inputs)):
     else:
         print(f"\nCase {i+1}: FAILED")
         test = test.splitlines()
-        compare = outputs[i][:-3]
-        for j in test:
-            if j + "\n" != compare[:len(j)+1]:
-                print("Expected: " + compare[:len(j)+1][:-1])
-                print("Your Result: " + j)
-            compare = compare[len(j)+1:]
+        open('compare.txt', 'w').write(outputs[i][:-3])
+        compare = open('compare.txt').read().splitlines()
+        for j in range(len(test)):
+            if test[j] != compare[j]:
+                print(f"Expected: {compare[j]}")
+                print(f"Your Result: {test[j]}")
         print()
