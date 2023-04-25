@@ -17,8 +17,7 @@ for i in range(len(inputs)):
     else:
         print(f"\nCase {i+1}: FAILED")
         test = test.splitlines()
-        open('compare.txt', 'w').write(outputs[i][:-3])
-        compare = open('compare.txt').read().splitlines()
+        compare = (outputs[i][:-3]).splitlines()
         for j in range(len(test)):
             if test[j] != compare[j]:
                 print(f"Expected: {compare[j]}")
