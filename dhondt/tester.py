@@ -11,7 +11,18 @@ for i in range(len(inputs)):
     open('user_inp.txt', 'w').write(inputs[i])
     os.system("./the1_dhondt < user_inp.txt > user_outp.txt")
 
-    if open('user_outp.txt').read() == outputs[i][:-3]:
+    test = open('user_outp.txt').read()
+    if test == outputs[i][:-3]:
         print(f"Case {i+1}: PASS")
     else:
-        print(f"Case {i+1}: FAILED")
+        print(f"\nCase {i+1}: FAILED")
+        test = test.splitlines()
+        compare = (outputs[i][:-3]).splitlines()
+        for j in range(len(test)):
+            try:
+                if test[j] != compare[j]:
+                    print(f"Expected: {compare[j]}")
+                    print(f"Your Result: {test[j]}")
+            except: 
+                continue
+        print()

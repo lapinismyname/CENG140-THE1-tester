@@ -19,7 +19,10 @@ for i in range(len(inputs)):
         test = test.splitlines()
         compare = (outputs[i][:-3]).splitlines()
         for j in range(len(test)):
-            if test[j] != compare[j]:
-                print(f"Expected: {compare[j]}")
-                print(f"Your Result: {test[j]}")
+            try:
+                if test[j] != compare[j]:
+                    print(f"Expected: {compare[j]}")
+                    print(f"Your Result: {test[j]}")
+            except: 
+                continue
         print()
