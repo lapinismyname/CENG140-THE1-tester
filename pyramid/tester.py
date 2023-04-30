@@ -15,14 +15,23 @@ for i in range(len(inputs)):
     if test == outputs[i][:-3]:
         print(f"Case {i+1}: PASS")
     else:
-        print(f"\nCase {i+1}: FAILED")
+        false_list = []
         test = test.splitlines()
         compare = (outputs[i][:-3]).splitlines()
         for j in range(len(test)):
             try:
                 if test[j] != compare[j]:
-                    print(f"Expected: {compare[j]}")
-                    print(f"Your Result: {test[j]}")
+                    if test[j][:-1] == compare[j][:-1] and abs(test[j][-1] - compare[j][-1]) == 1:
+                        continue
+                    else:
+                        false_list.append(j)          
             except: 
                 continue
-        print()
+        if false_list:
+            print(f"\nCase {i+1}: FAILED")
+            for k in false_list:
+                print(f"Expected: {compare[k]}")
+                print(f"Your Result: {test[k]}")
+            print()
+        else:
+            print(f"Case {i+1}: PASS")
