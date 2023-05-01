@@ -26,7 +26,7 @@ for i in range(len(inputs)):
                     else:
                         false_list.append(j)          
             except: 
-                continue
+                break
         if false_list:
             print(f"\nCase {i+1}: FAILED")
             for k in false_list:
